@@ -150,7 +150,9 @@ function render(){
     if(q.max&&f.querySelectorAll(`[name=${n}]:checked`).length>q.max){t.checked=false;msg.textContent="Chỉ chọn tối đa "+q.max+" mục."}}
    a[n]=[...f.querySelectorAll(`[name=${n}]:checked`)].map(i=>i.value);
   }else a[n]=t.value;
-  s.qs.forEach(x=>{if(x.show)document.getElementById("q-"+x.id).hidden=!sh(x)});
+     if(n=="q6"&&a.q7&&!(a.q6||[]).includes(a.q7))delete a.q7;
+   s.qs.forEach(x=>{const el=document.getElementById("q-"+x.id);if(x.show)el.hidden=!sh(x);
+    if((typeof x.o=="function"||typeof x.q=="function")&&x.id!=n.split("_")[0])el.outerHTML=qh(x)});
   save();
  };
  bk.onclick=()=>{step--;save();render();scrollTo(0,0)};
