@@ -53,8 +53,7 @@ const F=["Kho kiến thức có nguồn dẫn và nhãn chuyên gia kiểm đị
 const F15=F.map((x,i)=>i==0?x+" (nội dung được chuyên gia văn hóa/tôn giáo xem xét)":i==9?x+" (nơi lưu ngày giỗ, cách làm riêng, hình ảnh, ghi âm, câu chuyện của gia đình)":x);
 const EX=new Set(["Không theo tôn giáo/truyền thống nào","Không muốn trả lời","Chưa từng","Không dự đoán","Không có hạn chế","Không gặp vấn đề nào","Không thoải mái chia sẻ gì"]);
 const OUT="Cảm ơn bạn. Khảo sát lần này dành cho nhóm đối tượng khác nên bạn không cần trả lời tiếp.";
-const S3F=["Tự đứng ra lên kế hoạch và điều phối ít nhất một nghi lễ","Trực tiếp làm ít nhất một việc chuẩn bị (mua lễ, nấu cỗ, chuẩn bị/đọc văn khấn, liên hệ họ hàng)","Chưa làm, nhưng sẽ tự lo một nghi lễ cụ thể trong 3 tháng tới"];
-const S3S=["Chỉ tham dự (đến ăn, ngồi xem, không góp phần chuẩn bị)","Không có kinh nghiệm và không có kế hoạch"];
+const S3F=["Tự đứng ra lên kế hoạch và điều phối ít nhất một nghi lễ","Trực tiếp làm ít nhất một việc chuẩn bị (mua lễ, nấu cỗ, chuẩn bị/đọc văn khấn, liên hệ họ hàng)","Chưa làm, nhưng sẽ tự lo một nghi lễ cụ thể trong 3 tháng tới","Chỉ tham dự (đến ăn, ngồi xem, không góp phần chuẩn bị)","Không có kinh nghiệm và không có kế hoạch"];
 const P=["Chỉ dùng bản miễn phí","Mua gói theo sự kiện (ví dụ giỗ, Tết, nhập trạch, cưới hỏi)","Mua gói gia đình theo năm","Không dùng"];
 const full=a=>S3F.includes(a.s3);
 const paid=a=>a.q21==P[1]||a.q21==P[2];
@@ -63,9 +62,9 @@ const S=[
 {t:"Lời mở đầu",intro:"Khảo sát nhằm tìm hiểu cách các bạn trẻ chuẩn bị các nghi lễ, phong tục gia đình (giỗ, Tết, Rằm/mùng Một, ông Công ông Táo, nhập trạch, cưới hỏi, đi lễ chùa) và mức độ quan tâm của bạn đối với một nền tảng hỗ trợ việc này. Khảo sát dành cho người từ 18 đến 35 tuổi và mất khoảng "+MINS+" phút. Câu trả lời được ẩn danh và chỉ dùng cho báo cáo học tập của nhóm. Bạn có thể bỏ qua các câu không bắt buộc và dừng bất cứ lúc nào. Nếu để lại email ở cuối khảo sát, email được lưu riêng, không gắn với câu trả lời của bạn.",qs:[
 {id:"q0",t:"r",q:"Bạn đồng ý tham gia và cho phép nhóm sử dụng câu trả lời ẩn danh?",o:Y,end:["Không"],st:"khong_dong_y"}]},
 {t:"Phần 1. Sàng lọc",qs:[
-{id:"s1",t:"r",q:"Độ tuổi của bạn?",o:["Dưới 18","18–24","25–30","31–35","Trên 35"],end:["Dưới 18","Trên 35"],st:"loai_tuoi",out:"Cảm ơn bạn. Khảo sát này dành cho người từ 18 đến 35 tuổi nên bạn không cần trả lời tiếp."},
+{id:"s1",t:"r",q:"Độ tuổi của bạn?",o:["Dưới 18","18–24","25–30","31–35","Trên 35"],end:["Dưới 18"],st:"loai_tuoi",out:"Cảm ơn bạn đã dành thời gian. Khảo sát này dành cho người từ 18 tuổi trở lên nên khảo sát sẽ dừng tại đây."},
 {id:"s2",t:"r",q:"Bạn có làm nghề liên quan trực tiếp đến nghi lễ, lễ vật, dịch vụ tổ chức lễ, thầy cúng hoặc ứng dụng lịch/văn hóa không?",o:Y,end:["Có"],st:"loai_nghe"},
-{id:"s3",t:"r",q:"Trong 12 tháng qua, vai trò của bạn với các nghi lễ gia đình là gì? (chọn mức cao nhất)",o:[...S3F,...S3S]}]},
+{id:"s3",t:"r",q:"Trong 12 tháng qua, vai trò của bạn với các nghi lễ gia đình là gì? (chọn mức cao nhất)",o:[...S3F]}]},
 {t:"Phần 2. Nhu cầu chuẩn bị nghi lễ",qs:[
 {id:"q1",t:"c",q:"Bạn đã tự chuẩn bị/điều phối những nghi lễ nào trong 12 tháng qua?",o:[...R,"Chưa từng"],kh:1},
 {id:"q2",t:"r",q:"Với nghi lễ gia đình, hiện nay ai là người chịu trách nhiệm chính?",o:["Ông bà/bố mẹ lo trọn, tôi chỉ phụ","Tôi và người lớn cùng lo, chia đôi","Tôi là người chủ yếu lo","Tôi tự lo hoàn toàn (không có người lớn hỗ trợ)"]},
